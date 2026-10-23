@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIRGRILL — Burgers Built Like Architecture</title>
+<meta name="description" content="NOIRGRILL. Six layers. Zero shortcuts. A scroll-assembled burger experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0906; --bg2:#131009; --panel:#1a140c; --panel2:#211910;
+  --amber:#e8a33d; --amber2:#ffb84d; --ember:#c95d1e;
+  --cream:#f4ead8; --muted:#ab9a7f; --line:rgba(232,163,61,.16);
+  --shadow:0 30px 60px rgba(0,0,0,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+section{scroll-margin-top:84px}
+.serif{font-family:'Fraunces',serif}
+.wrap{width:min(1200px,92%);margin:0 auto}
+.eyebrow{letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;font-weight:700;color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;background:var(--amber);color:#1c1206;font-weight:700;
+  padding:.95rem 1.7rem;border-radius:999px;border:0;cursor:pointer;font-size:.95rem;transition:.25s;font-family:'Inter',sans-serif}
+.btn:hover{background:var(--amber2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(244,234,216,.35)}
+.btn.ghost:hover{border-color:var(--amber);color:var(--amber)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- header ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(12,9,6,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.55rem;letter-spacing:.06em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2.2rem;font-size:.83rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.nav-links a{color:var(--muted);transition:.2s}
+.nav-links a:hover{color:var(--amber)}
+.cart-btn{position:relative;background:var(--panel2);border:1px solid var(--line);color:var(--cream);
+  padding:.6rem 1.15rem;border-radius:999px;cursor:pointer;font-weight:700;font-size:.85rem;font-family:'Inter',sans-serif}
+.cart-btn:hover{border-color:var(--amber)}
+.cart-count{position:absolute;top:-8px;right:-8px;background:var(--ember);color:#fff;font-size:.68rem;font-weight:800;
+  width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ---------- assembly hero ---------- */
+.runway{height:620vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden;
+  background:radial-gradient(1100px 550px at 50% 108%,rgba(201,93,30,.30),transparent 62%),
+             radial-gradient(800px 420px at 82% -10%,rgba(232,163,61,.13),transparent 60%),
+             linear-gradient(#171208,#0c0906 70%)}
+.stage-grid{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(232,163,61,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(232,163,61,.05) 1px,transparent 1px);
+  background-size:72px 72px;mask-image:radial-gradient(70% 60% at 50% 45%,#000 30%,transparent 100%)}
+.stage-inner{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;padding:104px 4% 26px}
+.stage-kicker{text-align:center;z-index:5}
+.stage-kicker h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.04;margin:.55rem 0 .4rem}
+.stage-kicker h1 em{color:var(--amber);font-style:italic}
+.stage-kicker p{color:var(--muted);font-size:.95rem}
+.stage-mid{flex:1;width:100%;display:grid;grid-template-columns:230px 1fr 300px;align-items:center;gap:2rem;max-width:1240px}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:.95rem;z-index:5}
+.checklist li{display:flex;align-items:center;gap:.7rem;color:#6f6250;font-weight:600;font-size:.86rem;letter-spacing:.05em;transition:.35s}
+.checklist .dot{width:26px;height:26px;flex:none;border-radius:50%;border:1.5px solid #55482f;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;transition:.35s;color:transparent}
+.checklist li.active{color:var(--cream)}
+.checklist li.active .dot{border-color:var(--amber);color:var(--amber);box-shadow:0 0 0 5px rgba(232,163,61,.12)}
+.checklist li.done{color:var(--amber)}
+.checklist li.done .dot{background:var(--amber);border-color:var(--amber);color:#1c1206}
+.stack-zone{position:relative;display:flex;flex-direction:column;align-items:center}
+.stack{position:relative;width:min(520px,86vw);aspect-ratio:1204/919;border-radius:20px;overflow:hidden;
+  box-shadow:var(--shadow),0 0 0 1px rgba(232,163,61,.14),0 0 90px rgba(232,163,61,.10);background:linear-gradient(#39404a,#22252a)}
+.slice{position:absolute;left:0;width:100%;background-image:url('images/burger-hero.jpg');background-size:100% 600%;background-repeat:no-repeat;will-change:transform,opacity}
+.slice.s0{top:0%;height:calc(16.6667% + 2px);background-position:0 0%}
+.slice.s1{top:16.6667%;height:calc(16.6667% + 2px);background-position:0 20%}
+.slice.s2{top:33.3333%;height:calc(16.6667% + 2px);background-position:0 40%}
+.slice.s3{top:50%;height:calc(16.6667% + 2px);background-position:0 60%}
+.slice.s4{top:66.6667%;height:calc(16.6667% + 2px);background-position:0 80%}
+.slice.s5{top:83.3333%;height:calc(16.6667% + 2px);background-position:0 100%}
+.plate-shadow{width:62%;height:26px;margin-top:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);filter:blur(2px)}
+.caption-box{z-index:5;min-height:170px}
+.caption-box .cap-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:transparent;-webkit-text-stroke:1.5px var(--amber);line-height:1}
+.caption-box h3{font-family:'Fraunces',serif;font-size:1.65rem;font-weight:700;margin:.35rem 0 .5rem}
+.caption-box p{color:var(--muted);line-height:1.65;font-size:.94rem}
+.cap-fade{animation:capIn .5s ease both}
+@keyframes capIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stage-foot{width:100%;max-width:1240px;display:flex;align-items:center;justify-content:space-between;gap:1rem;z-index:5}
+.progress-track{flex:1;height:3px;background:rgba(244,234,216,.13);border-radius:99px;overflow:hidden}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--ember),var(--amber));border-radius:99px}
+.progress-pct{font-weight:800;font-size:.85rem;color:var(--amber);min-width:46px;text-align:right}
+.scroll-hint{color:var(--muted);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+.scroll-hint .arr{display:inline-block;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.done-card{position:absolute;left:50%;bottom:86px;transform:translate(-50%,24px);z-index:8;text-align:center;
+  background:rgba(16,12,7,.88);border:1px solid var(--line);backdrop-filter:blur(10px);border-radius:20px;
+  padding:1.3rem 2rem;opacity:0;pointer-events:none;transition:.55s cubic-bezier(.2,.7,.2,1);box-shadow:var(--shadow)}
+.done-card.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.done-card h3{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:900}
+.done-card h3 em{color:var(--amber)}
+.done-card p{color:var(--muted);margin:.35rem 0 1rem;font-size:.92rem}
+.done-card .row{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+@media(max-width:1020px){
+  .stage-mid{grid-template-columns:1fr;gap:.6rem;align-content:center}
+  .checklist{flex-direction:row;flex-wrap:wrap;justify-content:center;order:2}
+  .checklist li{font-size:.74rem}.checklist .dot{width:21px;height:21px;font-size:.6rem}
+  .caption-box{order:3;text-align:center;min-height:132px;max-width:520px;margin:0 auto}
+  .caption-box .cap-num{font-size:2.1rem}
+  .stack{width:min(430px,88vw)}
+  .done-card{bottom:70px;width:92%;padding:1.1rem}
+}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--amber);color:#1c1206;overflow:hidden;padding:.85rem 0;transform:rotate(-1.1deg) scale(1.02)}
+.marquee-track{display:flex;gap:3rem;white-space:nowrap;font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;letter-spacing:.05em;width:max-content;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+.section{padding:7rem 0}
+.sec-head{max-width:640px;margin-bottom:3.2rem}
+.sec-head h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.08;margin:.6rem 0 .8rem}
+.sec-head h2 em{color:var(--amber);font-style:italic}
+.sec-head p{color:var(--muted);line-height:1.7}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+@media(max-width:1020px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.menu-grid{grid-template-columns:1fr}}
+.dish{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.dish:hover{transform:translateY(-6px);border-color:rgba(232,163,61,.45);box-shadow:var(--shadow)}
+.dish img{height:190px;width:100%;object-fit:cover}
+.dish-body{padding:1.25rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.dish-top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.dish h3{font-family:'Fraunces',serif;font-size:1.22rem;font-weight:700}
+.price{color:var(--amber);font-weight:800;font-size:1.05rem;white-space:nowrap}
+.dish p{color:var(--muted);font-size:.88rem;line-height:1.6;flex:1}
+.tag{align-self:flex-start;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);
+  border:1px solid var(--line);padding:.28rem .6rem;border-radius:99px}
+.add-btn{margin-top:.5rem;background:transparent;border:1px solid rgba(244,234,216,.3);color:var(--cream);font-weight:700;
+  padding:.68rem 1rem;border-radius:12px;cursor:pointer;transition:.22s;font-family:'Inter',sans-serif;font-size:.88rem}
+.add-btn:hover{background:var(--amber);border-color:var(--amber);color:#1c1206}
+
+/* story */
+.story{background:var(--bg2)}
+.story-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5rem;align-items:center}
+@media(max-width:900px){.story-grid{grid-template-columns:1fr}}
+.story-copy h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,4.2vw,3rem);line-height:1.1;margin:.6rem 0 1rem}
+.story-copy h2 em{color:var(--amber);font-style:italic}
+.story-copy p{color:var(--muted);line-height:1.8;margin-bottom:1.1rem}
+.stats{display:flex;gap:2.4rem;margin-top:1.6rem;flex-wrap:wrap}
+.stat b{font-family:'Fraunces',serif;font-size:2rem;color:var(--amber);display:block;line-height:1}
+.stat span{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.story-media{position:relative}
+.story-media .main{border-radius:22px;height:480px;width:100%;object-fit:cover;box-shadow:var(--shadow)}
+.story-media .float{position:absolute;right:-14px;bottom:-26px;width:46%;height:220px;object-fit:cover;border-radius:18px;border:6px solid var(--bg2);box-shadow:var(--shadow)}
+@media(max-width:560px){.story-media .float{display:none}.story-media .main{height:340px}}
+
+/* craft / layers */
+.craft-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem}
+@media(max-width:1020px){.craft-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.craft-grid{grid-template-columns:1fr}}
+.craft{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+.craft:hover{transform:translateY(-5px);border-color:rgba(232,163,61,.45)}
+.craft img{height:140px;width:100%;object-fit:cover}
+.craft div{padding:1.05rem 1.1rem 1.2rem}
+.craft h3{font-family:'Fraunces',serif;font-size:1.08rem;margin-bottom:.35rem}
+.craft h3 span{color:var(--amber);margin-right:.4rem}
+.craft p{color:var(--muted);font-size:.84rem;line-height:1.6}
+
+/* reserve */
+.reserve{background:linear-gradient(180deg,var(--bg) 0%,#171208 100%)}
+.reserve-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:start}
+@media(max-width:900px){.reserve-grid{grid-template-columns:1fr}}
+.visit-list{list-style:none;margin-top:1.4rem;display:flex;flex-direction:column;gap:1.05rem}
+.visit-list li{display:flex;gap:.9rem;align-items:flex-start;color:var(--muted);line-height:1.55}
+.visit-list b{color:var(--cream)}
+.visit-ico{width:38px;height:38px;flex:none;border-radius:12px;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--amber);font-weight:900;font-family:'Fraunces',serif}
+form{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:2rem;box-shadow:var(--shadow)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:560px){.f-row{grid-template-columns:1fr}}
+.f-group{margin-bottom:1rem}
+label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+input,select,textarea{width:100%;background:#0f0c07;border:1px solid rgba(244,234,216,.16);border-radius:12px;color:var(--cream);
+  padding:.85rem 1rem;font-family:'Inter',sans-serif;font-size:.95rem;outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--amber)}
+input.err,select.err{border-color:#e05252}
+.f-error{color:#ff8f8f;font-size:.82rem;min-height:1.1rem;margin:.2rem 0 .6rem}
+.form-success{display:none;background:var(--panel);border:1px solid rgba(232,163,61,.5);border-radius:22px;padding:2.4rem;text-align:center;box-shadow:var(--shadow)}
+.form-success.show{display:block}
+.form-success .big{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.form-success p{color:var(--muted);line-height:1.7}
+
+footer{border-top:1px solid var(--line);padding:3rem 0 2.2rem;background:#090604}
+.foot{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:flex-start}
+.foot p{color:var(--muted);font-size:.88rem;line-height:1.7;max-width:380px}
+.foot small{display:block;width:100%;color:#6f6250;margin-top:2rem;font-size:.8rem}
+
+/* ---------- cart drawer ---------- */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(420px,94vw);background:#16110a;border-left:1px solid var(--line);
+  z-index:90;transform:translateX(105%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.drawer.show{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 1.5rem;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-family:'Fraunces',serif;font-size:1.35rem}
+.close-x{background:none;border:0;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1}
+.close-x:hover{color:var(--cream)}
+.cart-items{flex:1;overflow-y:auto;padding:1.1rem 1.5rem;display:flex;flex-direction:column;gap:1rem}
+.cart-empty{color:var(--muted);text-align:center;margin-top:3rem;line-height:1.7}
+.ci{display:flex;gap:.9rem;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.7rem}
+.ci img{width:58px;height:58px;border-radius:10px;object-fit:cover}
+.ci-info{flex:1;min-width:0}
+.ci-info b{display:block;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-info span{color:var(--amber);font-weight:700;font-size:.86rem}
+.qty{display:flex;align-items:center;gap:.45rem}
+.qty button{width:26px;height:26px;border-radius:8px;border:1px solid rgba(244,234,216,.25);background:none;color:var(--cream);cursor:pointer;font-weight:800}
+.qty button:hover{border-color:var(--amber);color:var(--amber)}
+.qty b{min-width:16px;text-align:center}
+.ci-remove{background:none;border:0;color:#8a7a5f;cursor:pointer;font-size:1.05rem}
+.ci-remove:hover{color:#ff8f8f}
+.drawer-foot{border-top:1px solid var(--line);padding:1.3rem 1.5rem}
+.t-row{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:.5rem;font-size:.92rem}
+.t-row.total{color:var(--cream);font-size:1.12rem;font-weight:800;margin:.7rem 0 1.1rem}
+.t-row.total span:last-child{color:var(--amber)}
+.checkout-ok{display:none;text-align:center;padding:1rem 0 .4rem}
+.checkout-ok.show{display:block}
+.checkout-ok b{font-family:'Fraunces',serif;font-size:1.3rem;display:block;margin-bottom:.35rem}
+.checkout-ok p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,90px);background:var(--amber);color:#1c1206;font-weight:700;
+  padding:.85rem 1.5rem;border-radius:999px;z-index:120;transition:.4s cubic-bezier(.2,.7,.2,1);box-shadow:var(--shadow);font-size:.92rem}
+.toast.show{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">NOIR<span>GRILL</span></a>
+    <nav class="nav-links">
+      <a href="#menu">Menu</a><a href="#story">Story</a><a href="#craft">The Craft</a><a href="#reserve">Reserve</a><a href="#visit">Visit</a>
+    </nav>
+    <button class="cart-btn" id="cartOpen" aria-label="Open your order">Your Order <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<!-- ================= ASSEMBLY HERO ================= -->
+<div class="runway" id="top">
+  <div class="stage">
+    <div class="stage-grid"></div>
+    <div class="stage-inner">
+      <div class="stage-kicker">
+        <div class="eyebrow">Noirgrill &middot; Est. 2019 &middot; Fire / Stack / Serve</div>
+        <h1>Every layer <em>has a job.</em></h1>
+        <p>Keep scrolling. Watch the Noir Original build itself — six layers, zero shortcuts.</p>
+      </div>
+      <div class="stage-mid">
+        <ul class="checklist" id="checklist">
+          <li data-step="0"><span class="dot">1</span>The Foundation</li>
+          <li data-step="1"><span class="dot">2</span>The Crunch</li>
+          <li data-step="2"><span class="dot">3</span>The Fire</li>
+          <li data-step="3"><span class="dot">4</span>The Melt</li>
+          <li data-step="4"><span class="dot">5</span>The Drip</li>
+          <li data-step="5"><span class="dot">6</span>The Crown</li>
+        </ul>
+        <div class="stack-zone">
+          <div class="stack" id="stack" aria-label="A burger assembling layer by layer as you scroll">
+            <div class="slice s0"></div><div class="slice s1"></div><div class="slice s2"></div>
+            <div class="slice s3"></div><div class="slice s4"></div><div class="slice s5"></div>
+          </div>
+          <div class="plate-shadow" id="plateShadow"></div>
+        </div>
+        <div class="caption-box">
+          <div id="capInner">
+            <div class="cap-num" id="capNum">01</div>
+            <h3 id="capTitle">The Foundation</h3>
+            <p id="capText">Brioche heel, toasted in rendered fat until the edges caramelise. It carries everything above it — so we build it like it matters.</p>
+          </div>
+        </div>
+      </div>
+      <div class="stage-foot">
+        <div class="scroll-hint">Scroll <span class="arr">&#8595;</span></div>
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="progress-pct" id="progressPct">0%</div>
+      </div>
+    </div>
+    <div class="done-card" id="doneCard">
+      <h3>Hungry <em>now?</em></h3>
+      <p>Six layers. Zero shortcuts. The Noir Original — $16, off the grill in 12 minutes.</p>
+      <div class="row">
+        <button class="btn" id="doneOrder">Order the Noir</button>
+        <a class="btn ghost" href="#reserve">Book a table</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mqTrack"></div>
+</div>
+
+<!-- ================= MENU ================= -->
+<section class="section" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The Menu</div>
+      <h2>Built, not <em>assembled.</em></h2>
+      <p>Eight plates, one philosophy: every ingredient earns its place or it doesn't make the cut. Add anything to your order — the kitchen fires it the second you check out.</p>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="section story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <div class="eyebrow">Our Story</div>
+      <h2>A dark room, a hot grill, <em>one obsession.</em></h2>
+      <p>NOIRGRILL started as a two-person night counter with a single grill and a rule nobody was allowed to break: if a layer doesn't change the bite, it doesn't go on the burger.</p>
+      <p>Six years on, the room is bigger and the lights are still low — but the rule runs the kitchen. We grind chuck every morning, bake brioche twice a day, and brine our pickles in-house. 617 is the number on our first-ever ticket. It's still the standard every plate is judged against.</p>
+      <div class="stats">
+        <div class="stat"><b>617</b><span>The first ticket</span></div>
+        <div class="stat"><b>6</b><span>Layers, always</span></div>
+        <div class="stat"><b>300&deg;</b><span>Grill temperature</span></div>
+        <div class="stat"><b>12<span style="font-size:1.1rem">min</span></b><span>Grill to table</span></div>
+      </div>
+    </div>
+    <div class="story-media reveal">
+      <img class="main" src="images/story-interior.jpg" alt="The moody NOIRGRILL dining room">
+      <img class="float" src="images/story-chef.jpg" alt="Our chef finishing a plate under the lamps">
+    </div>
+  </div>
+</section>
+
+<!-- ================= CRAFT ================= -->
+<section class="section" id="craft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The Craft</div>
+      <h2>Every layer <em>has a job.</em></h2>
+      <p>The same five disciplines behind the burger you just watched build itself.</p>
+    </div>
+    <div class="craft-grid">
+      <article class="craft reveal"><img src="images/ing-bun.jpg" alt="Fresh-baked brioche buns"><div><h3><span>01</span>The Bun</h3><p>Brioche baked twice daily, toasted in rendered fat for a crust that holds the stack together.</p></div></article>
+      <article class="craft reveal"><img src="images/ing-patty.jpg" alt="Meat over open fire"><div><h3><span>02</span>The Fire</h3><p>Chuck ground coarse every morning, smashed thin over open flame for maximum char.</p></div></article>
+      <article class="craft reveal"><img src="images/ing-cheese.jpg" alt="Aged cheese wheels"><div><h3><span>03</span>The Cheese</h3><p>Aged cheddar, sliced thick, steamed under a cloche until it runs to every corner.</p></div></article>
+      <article class="craft reveal"><img src="images/ing-tomato.jpg" alt="Vine tomatoes"><div><h3><span>04</span>The Tomato</h3><p>Vine tomatoes salted ten minutes early, so they season the bite instead of watering it.</p></div></article>
+      <article class="craft reveal"><img src="images/ing-lettuce.jpg" alt="Fresh greens and salad"><div><h3><span>05</span>The Greens</h3><p>Iceberg and garden leaves, cut thick and kept cold — the crunch is structural.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESERVE / VISIT ================= -->
+<section class="section reserve" id="reserve">
+  <div class="wrap reserve-grid">
+    <div class="reveal">
+      <div class="eyebrow">Reserve</div>
+      <h2 class="serif" style="font-weight:900;font-size:clamp(2rem,4.2vw,3rem);line-height:1.1;margin:.6rem 0 1rem">Book the <em style="color:var(--amber)">counter.</em></h2>
+      <p style="color:var(--muted);line-height:1.8">Twelve counter seats, two seatings a night, and a front-row view of the grill. Reserve below, or order ahead and skip the line entirely.</p>
+      <ul class="visit-list" id="visit">
+        <li><span class="visit-ico">H</span><div><b>Hours</b><br>Tue – Sun &middot; 5:00 PM – 12:00 AM<br>Kitchen closes 11:30 PM &middot; Closed Mondays</div></li>
+        <li><span class="visit-ico">A</span><div><b>Address</b><br>14 Ember Lane, Old Market District<br>Austin, TX 78701</div></li>
+        <li><span class="visit-ico">P</span><div><b>Phone</b><br>(512) 555-0617</div></li>
+        <li><span class="visit-ico">E</span><div><b>Email</b><br>hello@noirgrill.example</div></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <form id="reserveForm" novalidate>
+        <div class="f-row">
+          <div class="f-group"><label for="rName">Your name</label><input id="rName" type="text" placeholder="Alex Morgan" autocomplete="name"></div>
+          <div class="f-group"><label for="rPhone">Phone</label><input id="rPhone" type="tel" placeholder="(512) 555-0100" autocomplete="tel"></div>
+        </div>
+        <div class="f-row">
+          <div class="f-group"><label for="rType">Booking type</label>
+            <select id="rType"><option>Table reservation</option><option>Order ahead — pickup</option><option>Counter seating</option></select></div>
+          <div class="f-group"><label for="rGuests">Guests</label>
+            <select id="rGuests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6+ guests</option></select></div>
+        </div>
+        <div class="f-row">
+          <div class="f-group"><label for="rDate">Date</label><input id="rDate" type="date"></div>
+          <div class="f-group"><label for="rTime">Time</label>
+            <select id="rTime"><option>5:30 PM</option><option>6:30 PM</option><option selected>7:30 PM</option><option>8:30 PM</option><option>9:30 PM</option><option>10:30 PM</option></select></div>
+        </div>
+        <div class="f-group"><label for="rNotes">Notes (optional)</label><textarea id="rNotes" rows="3" placeholder="Window seat, allergies, a birthday — tell us."></textarea></div>
+        <div class="f-error" id="formError"></div>
+        <button class="btn" type="submit" style="width:100%;justify-content:center">Confirm booking</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="big">You're booked in.</div>
+        <p id="successText"></p>
+        <button class="btn ghost" id="successReset" style="margin-top:1.2rem">Make another booking</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="#top">NOIR<span>GRILL</span></a>
+      <p>Six layers. Zero shortcuts. A burger house in the Old Market District, Austin — built around one ticket: number 617.</p>
+    </div>
+    <div>
+      <p><b style="color:var(--cream)">Visit</b><br>14 Ember Lane, Austin, TX 78701<br>Tue – Sun, 5 PM – 12 AM</p>
+    </div>
+    <div>
+      <p><b style="color:var(--cream)">Contact</b><br>(512) 555-0617<br>hello@noirgrill.example</p>
+    </div>
+    <small>&copy; 2026 NOIRGRILL. Demo website — photography via Unsplash.</small>
+  </div>
+</footer>
+
+<!-- ================= CART ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Your order">
+  <div class="drawer-head"><h3>Your Order</h3><button class="close-x" id="cartClose" aria-label="Close cart">&times;</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div id="cartTotals">
+      <div class="t-row"><span>Subtotal</span><span id="subTotal">$0.00</span></div>
+      <div class="t-row"><span>Kitchen tax (8.5%)</span><span id="taxTotal">$0.00</span></div>
+      <div class="t-row total"><span>Total</span><span id="grandTotal">$0.00</span></div>
+      <button class="btn" id="checkoutBtn" style="width:100%;justify-content:center">Fire my order</button>
+    </div>
+    <div class="checkout-ok" id="checkoutOk">
+      <b>Order fired.</b>
+      <p id="checkoutText"></p>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= MENU DATA ================= */
+const MENU = [
+  {id:1, name:"The Tower No. 9", price:21.00, img:"images/menu-tower.jpg", tag:"Triple stack",
+   desc:"Three smashed patties, red onion, pickles and noir sauce in a glossy dome. Not a meal — a commitment."},
+  {id:2, name:"The Noir Original", price:16.00, img:"images/menu-noir.jpg", tag:"Signature",
+   desc:"The one from the scroll. Double chuck, double cheddar, garden crunch and the signature drip."},
+  {id:3, name:"Gloss & Smoke", price:19.00, img:"images/menu-gloss.jpg", tag:"Chef's pick",
+   desc:"Single thick patty under a lacquer of smoked glaze, crisp lettuce, shine for days."},
+  {id:4, name:"Ember Smash", price:18.00, img:"images/menu-ember.jpg", tag:"With fries",
+   desc:"Double smash with charred edges, house fries on the side, sauce for dipping and then some."},
+  {id:5, name:"The Fireside", price:15.50, img:"images/menu-fireside.jpg", tag:"Classic",
+   desc:"Our straight shooter: one patty, molten cheese, thick-cut fries riding shotgun."},
+  {id:6, name:"The Boardroom", price:16.50, img:"images/menu-boardroom.jpg", tag:"With fries",
+   desc:"Board-served and business-serious. Double stack, fries in the tin, zero small talk."},
+  {id:7, name:"Charred Chicken Noir", price:14.50, img:"images/menu-chicken.jpg", tag:"Chicken",
+   desc:"Flame-kissed chicken, pulled and piled with slaw and charred mayo in a toasted bun."},
+  {id:8, name:"The Butcher's Cut", price:24.00, img:"images/menu-steak.jpg", tag:"Off the grill",
+   desc:"When the grill is this hot, steak happens. Sliced, rested, served with noir butter."}
+];
+const grid = document.getElementById('menuGrid');
+grid.innerHTML = MENU.map(m => `
+  <article class="dish reveal">
+    <img src="${m.img}" alt="${m.name}">
+    <div class="dish-body">
+      <span class="tag">${m.tag}</span>
+      <div class="dish-top"><h3>${m.name}</h3><span class="price">$${m.price.toFixed(2)}</span></div>
+      <p>${m.desc}</p>
+      <button class="add-btn" data-add="${m.id}">Add to order +</button>
+    </div>
+  </article>`).join('');
+
+/* marquee */
+const words = "SIX LAYERS &middot; ZERO SHORTCUTS &middot; EST. 2019 &middot; TICKET 617 &middot; FIRE / STACK / SERVE &middot; ";
+document.getElementById('mqTrack').innerHTML = `<span>${words.repeat(4)}</span><span>${words.repeat(4)}</span>`;
+
+/* ================= SCROLL ASSEMBLY ================= */
+const LAYERS = [
+  {strip:5, num:"01", title:"The Foundation", text:"Brioche heel, toasted in rendered fat until the edges caramelise. It carries everything above it — so we build it like it matters."},
+  {strip:4, num:"02", title:"The Crunch", text:"Pickles brined in-house, vine tomato salted early, iceberg cut thick. Cold against the heat — the contrast is the whole point."},
+  {strip:3, num:"03", title:"The Fire", text:"200 grams of chuck, smashed thin on a 300-degree grill so the edges char and lace. This is where the flavour is made."},
+  {strip:2, num:"04", title:"The Melt", text:"A second patty under double aged cheddar, steamed until it runs to every corner — then the sauce starts to fall."},
+  {strip:1, num:"05", title:"The Drip", text:"Our smoked noir sauce, poured heavy over the shoulder of the bun. The drip down the side isn't an accident. It's engineered."},
+  {strip:0, num:"06", title:"The Crown", text:"A glossy sesame dome, still warm from the second bake of the day. Six layers. Zero shortcuts. That's a NOIRGRILL burger."}
+];
+const slices = [...document.querySelectorAll('.slice')];
+const checklistItems = [...document.querySelectorAll('#checklist li')];
+const capInner = document.getElementById('capInner');
+const capNum = document.getElementById('capNum');
+const capTitle = document.getElementById('capTitle');
+const capText = document.getElementById('capText');
+const progressBar = document.getElementById('progressBar');
+const progressPct = document.getElementById('progressPct');
+const doneCard = document.getElementById('doneCard');
+const plateShadow = document.getElementById('plateShadow');
+const runway = document.querySelector('.runway');
+let currentCap = 0;
+
+function clamp(v, a, b){ return Math.min(b, Math.max(a, v)); }
+function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
+
+function renderAssembly(){
+  const rect = runway.getBoundingClientRect();
+  const total = rect.height - window.innerHeight;
+  const p = clamp(-rect.top / total, 0, 1);
+  // hold a beat at the start and end: build runs between 4% and 92% of the scroll
+  const bp = clamp((p - 0.04) / 0.88, 0, 1);
+  let activeStep = 0;
+  LAYERS.forEach((layer, i) => {
+    const t = easeOut(clamp(bp * LAYERS.length - i, 0, 1));
+    const el = slices[layer.strip];
+    el.style.transform = `translateY(${(-170 * (1 - t)).toFixed(2)}%) scale(${(0.94 + 0.06 * t).toFixed(3)})`;
+    el.style.opacity = (0.08 + 0.92 * t).toFixed(3);
+    const li = checklistItems[i];
+    li.classList.toggle('done', t >= 0.98);
+    li.classList.toggle('active', t > 0.02 && t < 0.98);
+    if (t > 0.02) activeStep = i;
+  });
+  plateShadow.style.opacity = (0.25 + 0.75 * bp).toFixed(2);
+  plateShadow.style.transform = `scaleX(${(0.7 + 0.3 * bp).toFixed(3)})`;
+  if (activeStep !== currentCap) {
+    currentCap = activeStep;
+    capNum.textContent = LAYERS[activeStep].num;
+    capTitle.textContent = LAYERS[activeStep].title;
+    capText.textContent = LAYERS[activeStep].text;
+    capInner.classList.remove('cap-fade'); void capInner.offsetWidth; capInner.classList.add('cap-fade');
+  }
+  progressBar.style.width = (p * 100).toFixed(1) + '%';
+  progressPct.textContent = Math.round(p * 100) + '%';
+  doneCard.classList.toggle('show', p > 0.94);
+}
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) { ticking = true; requestAnimationFrame(() => { renderAssembly(); ticking = false; }); }
+}, {passive:true});
+renderAssembly();
+
+/* ================= REVEAL ON SCROLL ================= */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ================= CART ================= */
+const cart = new Map();
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+const cartItemsEl = document.getElementById('cartItems');
+const cartCountEl = document.getElementById('cartCount');
+const money = n => '$' + n.toFixed(2);
+
+function openCart(){ drawer.classList.add('show'); overlay.classList.add('show'); }
+function closeCart(){ drawer.classList.remove('show'); overlay.classList.remove('show'); }
+document.getElementById('cartOpen').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function addToCart(id){
+  const item = MENU.find(m => m.id === id);
+  if (!item) return;
+  const row = cart.get(id) || { ...item, qty: 0 };
+  row.qty += 1; cart.set(id, row);
+  renderCart(); toast(item.name + ' added to your order');
+}
+function renderCart(){
+  let count = 0, sub = 0;
+  if (cart.size === 0) {
+    cartItemsEl.innerHTML = '<div class="cart-empty">Your order is empty.<br>The grill is waiting.</div>';
+  } else {
+    cartItemsEl.innerHTML = [...cart.values()].map(r => {
+      count += r.qty; sub += r.qty * r.price;
+      return `<div class="ci">
+        <img src="${r.img}" alt="${r.name}">
+        <div class="ci-info"><b>${r.name}</b><span>${money(r.price)}</span></div>
+        <div class="qty">
+          <button data-dec="${r.id}" aria-label="Decrease">−</button><b>${r.qty}</b><button data-inc="${r.id}" aria-label="Increase">+</button>
+        </div>
+        <button class="ci-remove" data-rem="${r.id}" aria-label="Remove">&times;</button>
+      </div>`;
+    }).join('');
+    [...cart.values()].forEach(r => { count += 0; });
+    count = [...cart.values()].reduce((a, r) => a + r.qty, 0);
+    sub = [...cart.values()].reduce((a, r) => a + r.qty * r.price, 0);
+  }
+  const tax = sub * 0.085;
+  document.getElementById('subTotal').textContent = money(sub);
+  document.getElementById('taxTotal').textContent = money(tax);
+  document.getElementById('grandTotal').textContent = money(sub + tax);
+  cartCountEl.textContent = count;
+  document.getElementById('checkoutOk').classList.remove('show');
+  document.getElementById('cartTotals').style.display = 'block';
+}
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  if (add) { addToCart(+add.dataset.add); return; }
+  const inc = e.target.closest('[data-inc]');
+  if (inc) { cart.get(+inc.dataset.inc).qty += 1; renderCart(); return; }
+  const dec = e.target.closest('[data-dec]');
+  if (dec) { const r = cart.get(+dec.dataset.dec); r.qty -= 1; if (r.qty <= 0) cart.delete(+dec.dataset.dec); renderCart(); return; }
+  const rem = e.target.closest('[data-rem]');
+  if (rem) { cart.delete(+rem.dataset.rem); renderCart(); }
+});
+document.getElementById('doneOrder').addEventListener('click', () => { addToCart(2); openCart(); });
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  if (cart.size === 0) { toast('Your order is empty — add something tasty first'); return; }
+  const total = document.getElementById('grandTotal').textContent;
+  const no = 'NG-' + Math.floor(1000 + Math.random() * 9000);
+  document.getElementById('checkoutText').textContent =
+    `Order ${no} is on the fire. Total ${total}. Show this number at the counter — your stack will be ready in about 12 minutes.`;
+  document.getElementById('checkoutOk').classList.add('show');
+  document.getElementById('cartTotals').style.display = 'none';
+  cart.clear();
+  cartItemsEl.innerHTML = '<div class="cart-empty">Order sent to the kitchen.<br>Start a new one whenever.</div>';
+  cartCountEl.textContent = '0';
+  document.getElementById('subTotal').textContent = '$0.00';
+  document.getElementById('taxTotal').textContent = '$0.00';
+  document.getElementById('grandTotal').textContent = '$0.00';
+});
+renderCart();
+
+/* ================= RESERVATION FORM ================= */
+const form = document.getElementById('reserveForm');
+const formError = document.getElementById('formError');
+document.getElementById('rDate').min = new Date().toISOString().split('T')[0];
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('rName');
+  const phone = document.getElementById('rPhone');
+  const date = document.getElementById('rDate');
+  const type = document.getElementById('rType').value;
+  const guests = document.getElementById('rGuests').value;
+  const time = document.getElementById('rTime').value;
+  [name, phone, date].forEach(f => f.classList.remove('err'));
+  let err = '';
+  if (name.value.trim().length < 2) { err = 'Please tell us your name.'; name.classList.add('err'); }
+  else if (phone.value.replace(/\D/g, '').length < 7) { err = 'Please add a valid phone number so we can confirm.'; phone.classList.add('err'); }
+  else if (!date.value) { err = 'Please pick a date.'; date.classList.add('err'); }
+  else if (date.value < new Date().toISOString().split('T')[0]) { err = 'That date is in the past — pick an upcoming night.'; date.classList.add('err'); }
+  formError.textContent = err;
+  if (err) return;
+  const nice = new Date(date.value + 'T12:00:00').toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  document.getElementById('successText').textContent =
+    `${name.value.trim()}, your ${type.toLowerCase()} is locked in for ${nice} at ${time} — ${guests}. We'll text ${phone.value.trim()} to confirm. Ticket number 617 energy, guaranteed.`;
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+document.getElementById('successReset').addEventListener('click', () => {
+  form.reset(); form.style.display = 'block';
+  document.getElementById('formSuccess').classList.remove('show');
+});
+</script>
+</body>
+</html>
